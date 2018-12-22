@@ -95,9 +95,9 @@ chmod +x swarm.sh
 #!/bin/bash
 cd $(dirname $0)
 
-JENKINS_IP="10.0.0.1"
+JENKINS_IP="3.83.216.238"
 USERNAME="admin"
-PASSWORD="12345678"
+PASSWORD="pass1234"
 
 java -jar swarm-client-3.7.jar -name "$(hostname)" -executors 8 -labels docker -master "http://$JENKINS_IP:8080" -username "$USERNAME" -password "$PASSWORD" -fsroot /tmp
 ```
@@ -124,7 +124,15 @@ systemctl enable jenkins
 systemctl start jenkins
 ```
 
-9. Download docker-compose and vegeta binaries to `/usr/local`
+9. Configure Throttle Concurrent Builds in jenkins
+* go to Manage jenkins > Configure System > Throttle Concurrent Builds
+* provide Category Name	as throttleDocker
+* provide Throttled Node Label as docker
+* provide Maximum Concurrent Builds Per Node Labeled As Above	to 1
+
+![Throttle Concurrent Builds](/docs/images/Throttle-Concurrent-Builds.png)
+
+10. Download docker-compose and vegeta binaries to `/usr/local`
 ```
 cd /usr/local/bin
 wget https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64
