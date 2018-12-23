@@ -135,10 +135,13 @@ systemctl start jenkins
 10. Download docker-compose and vegeta binaries to `/usr/local`
 ```
 cd /usr/local/bin
-wget https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64
-mv docker-compose* docker-compose
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
 chmod +x docker-compose
-wget https://github.com/tsenart/vegeta/releases/download/v6.3.0/vegeta-v6.3.0-linux-amd64.tar.gz
+
+wget https://github.com/tsenart/vegeta/releases/download/cli%2Fv12.1.0/vegeta-12.1.0-linux-amd64.tar.gz
 tar xf *.gz
 rm *.gz
+
 ```
